@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import Applications from "./pages/Applications";
+import AddApplication from "./pages/AddApplication";
 
 function App() {
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch(() => setMessage("Could not reach backend"));
-  }, []);
-
-  return <h1>{message}</h1>;
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <main style={{ padding: "1rem", flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/applications" element={<Applications />} />
+            <Route path="/add" element={<AddApplication />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
