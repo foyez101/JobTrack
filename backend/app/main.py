@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import applications
+from app.services.database import Base, engine
+from app.models import application as application_model
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="JobTrack API")
 
