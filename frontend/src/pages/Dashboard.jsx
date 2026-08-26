@@ -1,9 +1,31 @@
+import { useEffect, useState } from "react";
+import { getApplications } from "../services/api";
+
 function Dashboard() {
+  const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getApplications()
+      .then((data) => {
+        setApplications(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading dashboard...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   const stats = {
-    total: 12,
-    interviews: 3,
-    offers: 1,
-    rejections: 4,
+    total: applications.length,
+    interviews: applications.filter((a) => a.status === "Interview").length,
+    offers: applications.filter((a) => a.status === "Offer").length,
+    rejections: applications.filter((a) => a.status === "Rejected").length,
   };
 
   return (

@@ -7,3 +7,17 @@ export async function getApplications() {
   }
   return response.json();
 }
+
+export async function createApplication(applicationData) {
+  const response = await fetch(`${BASE_URL}/applications/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(applicationData),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to create application");
+  }
+  return response.json();
+}
