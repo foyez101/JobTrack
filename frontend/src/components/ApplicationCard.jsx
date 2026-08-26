@@ -6,12 +6,12 @@ function ApplicationCard({ application }) {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
           <h3 style={{ margin: 0 }}>{application.position}</h3>
-          <p style={{ margin: "4px 0", color: "#aaa" }}>{application.company}</p>
+          <p style={{ margin: "4px 0", color: "#aaa" }}>{application.company_name}</p>
         </div>
         <StatusBadge status={application.status} />
       </div>
       <p style={{ margin: "4px 0", fontSize: "0.85rem" }}>
-        {application.location} · Applied {application.applicationDate}
+        {application.location} · Applied {application.application_date}
       </p>
     </div>
   );

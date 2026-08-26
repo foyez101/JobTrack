@@ -1,45 +1,31 @@
+import { useEffect, useState } from "react";
 import ApplicationCard from "../components/ApplicationCard";
-
-const dummyApplications = [
-  {
-    id: 1,
-    company: "Acme Corp",
-    position: "Frontend Developer",
-    location: "Remote",
-    applicationDate: "2026-08-10",
-    status: "Applied",
-  },
-  {
-    id: 2,
-    company: "Globex Inc",
-    position: "Full-Stack Engineer",
-    location: "Dhaka, BD",
-    applicationDate: "2026-08-05",
-    status: "Interview",
-  },
-  {
-    id: 3,
-    company: "Initech",
-    position: "Backend Developer (Python)",
-    location: "Remote",
-    applicationDate: "2026-07-28",
-    status: "Rejected",
-  },
-  {
-    id: 4,
-    company: "Umbrella Ltd",
-    position: "Software Engineer",
-    location: "Hybrid",
-    applicationDate: "2026-08-15",
-    status: "Offer",
-  },
-];
+import { getApplications } from "../services/api";
 
 function Applications() {
+  const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getApplications()
+      .then((data) => {
+        setApplications(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading applications...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <div>
       <h2>Applications</h2>
-      {dummyApplications.map((app) => (
+      {applications.map((app) => (
         <ApplicationCard key={app.id} application={app} />
       ))}
     </div>
