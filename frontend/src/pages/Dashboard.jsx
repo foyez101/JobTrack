@@ -18,8 +18,8 @@ function Dashboard() {
       });
   }, []);
 
-  if (loading) return <p>Loading dashboard...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="text-slate-400">Loading dashboard...</p>;
+  if (error) return <p className="text-red-400">Error: {error}</p>;
 
   const stats = {
     total: applications.length,
@@ -28,26 +28,23 @@ function Dashboard() {
     rejections: applications.filter((a) => a.status === "Rejected").length,
   };
 
+  const cards = [
+    { label: "Total Applications", value: stats.total, color: "bg-slate-800" },
+    { label: "Interviews", value: stats.interviews, color: "bg-purple-900" },
+    { label: "Offers", value: stats.offers, color: "bg-green-900" },
+    { label: "Rejections", value: stats.rejections, color: "bg-red-900" },
+  ];
+
   return (
     <div>
-      <h2>Dashboard</h2>
-      <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-        <div style={{ border: "1px solid #ccc", padding: "1rem", minWidth: "120px" }}>
-          <p>Total Applications</p>
-          <h3>{stats.total}</h3>
-        </div>
-        <div style={{ border: "1px solid #ccc", padding: "1rem", minWidth: "120px" }}>
-          <p>Interviews</p>
-          <h3>{stats.interviews}</h3>
-        </div>
-        <div style={{ border: "1px solid #ccc", padding: "1rem", minWidth: "120px" }}>
-          <p>Offers</p>
-          <h3>{stats.offers}</h3>
-        </div>
-        <div style={{ border: "1px solid #ccc", padding: "1rem", minWidth: "120px" }}>
-          <p>Rejections</p>
-          <h3>{stats.rejections}</h3>
-        </div>
+      <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {cards.map((card) => (
+          <div key={card.label} className={`${card.color} rounded-lg p-5 shadow`}>
+            <p className="text-slate-300 text-sm">{card.label}</p>
+            <h3 className="text-3xl font-bold mt-1">{card.value}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );

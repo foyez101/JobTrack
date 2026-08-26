@@ -19,15 +19,19 @@ function Applications() {
       });
   }, []);
 
-  if (loading) return <p>Loading applications...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="text-slate-400">Loading applications...</p>;
+  if (error) return <p className="text-red-400">Error: {error}</p>;
 
   return (
     <div>
-      <h2>Applications</h2>
-      {applications.map((app) => (
-        <ApplicationCard key={app.id} application={app} />
-      ))}
+      <h2 className="text-2xl font-bold mb-6">Applications</h2>
+      {applications.length === 0 ? (
+        <p className="text-slate-400">No applications yet.</p>
+      ) : (
+        applications.map((app) => (
+          <ApplicationCard key={app.id} application={app} />
+        ))
+      )}
     </div>
   );
 }

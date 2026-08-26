@@ -1,7 +1,7 @@
 function Navbar() {
   return (
-    <header style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-      <h1>JobTrack</h1>
+    <header className="bg-slate-900 text-white px-6 py-4 shadow-md">
+      <h1 className="text-2xl font-bold tracking-tight">JobTrack</h1>
     </header>
   );
 }

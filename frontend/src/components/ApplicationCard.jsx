@@ -2,15 +2,15 @@ import StatusBadge from "./StatusBadge";
 
 function ApplicationCard({ application }) {
   return (
-    <div style={{ border: "1px solid #ccc", padding: "1rem", marginBottom: "0.75rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <div className="bg-slate-800 rounded-lg p-4 mb-3 shadow hover:bg-slate-750 transition-colors">
+      <div className="flex justify-between items-start">
         <div>
-          <h3 style={{ margin: 0 }}>{application.position}</h3>
-          <p style={{ margin: "4px 0", color: "#aaa" }}>{application.company_name}</p>
+          <h3 className="text-lg font-semibold text-white">{application.position}</h3>
+          <p className="text-slate-400 text-sm">{application.company_name}</p>
         </div>
         <StatusBadge status={application.status} />
       </div>
-      <p style={{ margin: "4px 0", fontSize: "0.85rem" }}>
+      <p className="text-slate-500 text-xs mt-2">
         {application.location} · Applied {application.application_date}
       </p>
     </div>
