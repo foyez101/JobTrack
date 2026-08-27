@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 
 function ApplicationCard({ application }) {
@@ -8,7 +9,15 @@ function ApplicationCard({ application }) {
           <h3 className="text-lg font-semibold text-white">{application.position}</h3>
           <p className="text-slate-400 text-sm">{application.company_name}</p>
         </div>
-        <StatusBadge status={application.status} />
+        <div className="flex items-center gap-3">
+          <StatusBadge status={application.status} />
+          <Link
+            to={`/edit/${application.id}`}
+            className="text-purple-400 hover:text-purple-300 text-sm font-medium"
+          >
+            Edit
+          </Link>
+        </div>
       </div>
       <p className="text-slate-500 text-xs mt-2">
         {application.location} · Applied {application.application_date}

@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Applications from "./pages/Applications";
 import AddApplication from "./pages/AddApplication";
+import EditApplication from "./pages/EditApplication";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/applications" element={<Applications />} />
               <Route path="/add" element={<AddApplication />} />
+              <Route path="/edit/:id" element={<EditApplication />} />
             </Routes>
           </main>
         </div>
