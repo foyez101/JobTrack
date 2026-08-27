@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 
-function ApplicationCard({ application }) {
+function ApplicationCard({ application, onDelete }) {
   return (
     <div className="bg-slate-800 rounded-lg p-4 mb-3 shadow hover:bg-slate-750 transition-colors">
       <div className="flex justify-between items-start">
@@ -17,6 +17,12 @@ function ApplicationCard({ application }) {
           >
             Edit
           </Link>
+          <button
+            onClick={() => onDelete(application.id)}
+            className="text-red-400 hover:text-red-300 text-sm font-medium"
+          >
+            Delete
+          </button>
         </div>
       </div>
       <p className="text-slate-500 text-xs mt-2">
